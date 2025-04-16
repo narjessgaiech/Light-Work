@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Créer un Compte</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="signup-container">
+      <h2>Créer un Compte</h2>
+      <form action="signup.php" method="POST">
+        <div class="input-group">
+          <label for="last_name">Nom et Prénom</label>
+          <input type="text" id="last_name" name="np" required />
+        </div>
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="input-group">
+          <label for="birth_date">Date de naissance</label>
+          <input type="date" id="birth_date" name="birth_date" required />
+        </div>
+        <div class="input-group">
+          <label for="phone">Numéro de téléphone</label>
+          <input type="tel" id="phone" name="phone" required />
+        </div>
+        <div class="input-group">
+          <label for="poste">Poste</label>
+          <input type="text" id="poste" name="poste" required />
+        </div>
+        <div class="input-group">
+          <label for="departement">Département</label>
+          <input type="text" id="departement" name="departement" required />
+        </div>
+        <div class="input-group">
+          <label for="password">Mot de passe</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="input-group">
+          <label for="confirm_password">Confirmer le mot de passe</label>
+          <input
+            type="password"
+            id="confirm_password"
+            name="confirm_password"
+            required
+          />
+        </div>
+        <div class="button-group">
+          <button type="submit" onclick="window.location.href='pointage.html'">
+            Envoyer
+          </button>
+          <button type="reset" onclick="window.location.href='connexion.html'">
+            Retour
+          </button>
+        </div>
+      </form>
+    </div>
+    <script>
+      document.querySelector("form").addEventListener("submit", function (e) {
+        const nomPrenom = document.getElementById("last_name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const birthDate = document.getElementById("birth_date").value;
+        const phone = document.getElementById("phone").value.trim();
+        const poste = document.getElementById("poste").value.trim();
+        const departement = document.getElementById("departement").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+          document.getElementById("confirm_password").value;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^[0-9]{8,15}$/;
+        if (
+          nomPrenom === "" ||
+          email === "" ||
+          birthDate === "" ||
+          phone === "" ||
+          poste === "" ||
+          departement === "" ||
+          password === "" ||
+          confirmPassword === ""
+        ) {
+          alert("Tous les champs sont obligatoires.");
+          e.preventDefault();
+          return;
+        }
+        if (!emailRegex.test(email)) {
+          alert("Veuillez saisir une adresse email valide.");
+          e.preventDefault();
+          return;
+        }
+        if (!phoneRegex.test(phone)) {
+          alert(
+            "Veuillez saisir un numéro de téléphone valide (8 à 15 chiffres)."
+          );
+          e.preventDefault();
+          return;
+        }
+        if (password.length < 6) {
+          alert("Le mot de passe doit contenir au moins 6 caractères.");
+          e.preventDefault();
+          return;
+        }
+        if (password !== confirmPassword) {
+          alert("Les mots de passe ne correspondent pas.");
+          e.preventDefault();
+          return;
+        }
+      });
+    </script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .signup-container {
+        background-color: green;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 0 10px white(255, 255, 255, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: red;
+        margin-bottom: 20px;
+      }
+      .input-group {
+        margin-bottom: 15px;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: white;
+        color: white;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #e50914;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        flex: 1;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #c40812;
+      }
+      .back-btn {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        flex: 1;
+      }
+      .back-btn:hover {
+        background-color: #555;
+      }
+    </style>
+  </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Connexion Light Work</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h1 class="logo">Light Work</h1>
+      <form action="connexion.php" method="POST" class="login-form">
+        <input type="text" name="email" placeholder="E-mail " required />
+        <input
+          type="password"
+          name="password"
+          placeholder="Mot de passe"
+          required
+        />
+        <button type="submit" onclick="window.location.href='pointage.html'">
+          Envoyer
+        </button>
+      </form>
+      <div class="divider">OU</div>
+      <button
+        class="code-btn"
+        onclick="window.location.href='identifiant.html'"
+      >
+        Utiliser un code d’identification
+      </button>
+      <a href="mdpo.html" class="forgot-password">Mot de passe oublié ?</a>
+      <p class="signup">
+        Première visite sur Light Work ?
+        <a href="inscri.html">Inscrivez-vous maintenant.</a>
+      </p>
+      <p class="captcha">
+        L’identification est protégée par Google reCAPTCHA pour nous assurer que
+        vous n’êtes pas un robot. <br /><br /><a href="#">En savoir plus.</a>
+      </p>
+    </div>
+  </body>
+  <style>
+    body {
+      background-color: #ffffff;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .login-container {
+      background-color: green;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .logo {
+      color: red;
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .login-form input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background-color: white;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+    }
+
+    .login-form button {
+      width: 100%;
+      padding: 12px;
+      background-color: #e50914;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .code-btn {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      background-color: red;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    .forgot-password,
+    .signup a,
+    .captcha a {
+      color: #aaa;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .divider {
+      margin: 15px 0;
+      color: white;
+    }
+
+    .signup {
+      margin-top: 10px;
+    }
+    .captcha {
+      font-size: 12px;
+      color: orangered;
+      margin-top: 20px;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.querySelector(".login-form");
+      form.addEventListener("submit", function (e) {
+        const input = form.querySelector("input[name='email_or_phone']");
+        const value = input.value.trim();
+
+        if (value === "") {
+          e.preventDefault();
+          alert("Veuillez entrer votre e-mail ou numéro de téléphone.");
+          return;
+        }
+        // Affiche une confirmation (pour simulation)
+        alert("Un code a été envoyé à : " + value);
+      });
+    });
+  </script>
+</html>

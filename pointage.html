@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Formulaire de Pointage</title>
+  </head>
+  <body>
+    <div class="pointage-container">
+      <h2>Pointage Employeur</h2>
+      <form
+        action="enregistrer_pointage_photo.php"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="input-group">
+          <label>Nom et Prénom :</label>
+          <input type="text" name="nom" required />
+        </div>
+        <div class="input-group">
+          <label>Poste :</label>
+          <input type="text" name="poste" required />
+        </div>
+        <div class="input-group">
+          <label>Email :</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="input-group">
+          <label>Téléphone :</label>
+          <input type="tel" name="telephone" required />
+        </div>
+        <div class="input-group">
+          <label>Date :</label>
+          <input
+            type="date"
+            name="date"
+            value="<?= date('Y-m-d') ?>"
+            required
+          />
+        </div>
+        <div class="input-group">
+          <label>Heure :</label>
+          <input type="time" name="heure" value="<?= date('H:i') ?>" required />
+        </div>
+        <div class="input-group">
+          <label>Photo de l'employeur :</label>
+          <input type="file" name="photo" accept="image/*" required />
+        </div>
+        <div class="input-group">
+          <label>Scanner votre qr code :</label>
+          <div id="qrcode"></div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+        <script>
+          var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "https://www.example.com",
+            width: 128,
+            height: 128,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H,
+          });
+        </script>
+        <div class="button-group">
+          <button type="submit" onclick="window.location.href='fiche.html'">
+            Valider le pointage
+          </button>
+          <button type="reset" onclick="window.location.href='connexion.html'">
+            Retour
+          </button>
+        </div>
+      </form>
+    </div>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #ffffff;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .pointage-container {
+        background-color: green;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      }
+      h2 {
+        text-align: center;
+        color: red;
+        margin-bottom: 20px;
+      }
+      .input-group {
+        margin-bottom: 15px;
+      }
+      .input-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      .input-group input {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: white;
+        color: white;
+      }
+      .button-group {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 15px;
+      }
+      button {
+        padding: 10px 20px;
+        background-color: #e50914;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        flex: 1;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+      button:hover {
+        background-color: #c40812;
+      }
+      .back-btn {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 5px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+        flex: 1;
+      }
+      .back-btn:hover {
+        background-color: #555;
+      }
+    </style>
+    <script>
+      function previewPhoto(input) {
+        const preview = document.getElementById("photo-preview");
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            preview.src = e.target.result;
+            preview.style.display = "block";
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
+  </body>
+</html>

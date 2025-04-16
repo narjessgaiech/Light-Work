@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Code d'identification - Light Work</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1 class="logo">Light Work</h1>
+      <h2 class="subtitle">Obtenez votre code d’identification</h2>
+      <form action="ident.php" method="POST" class="login-form">
+        <input
+          type="text"
+          name="email_or_phone"
+          placeholder="E-mail ou numéro de téléphone"
+          required
+        />
+        <button type="submit" onclick="window.location.href='pointage.html'">
+          Envoyer un code
+        </button>
+      </form>
+      <p class="signup">Première visite sur Light Work ?</p>
+    </div>
+    <style>
+      body {
+        background-color: #ffffff;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .login-container {
+        background-color: green;
+        padding: 30px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+      }
+
+      .logo {
+        color: red;
+        font-size: 32px;
+        margin-bottom: 20px;
+      }
+
+      .subtitle {
+        font-size: 18px;
+        margin-bottom: 20px;
+      }
+
+      .login-form input {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        background-color: white;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+      }
+
+      .login-form button {
+        width: 100%;
+        padding: 12px;
+        background-color: #e50914;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .link,
+      .signup a,
+      .captcha a {
+        color: #aaa;
+        font-size: 13px;
+        text-decoration: none;
+        display: block;
+        margin-top: 10px;
+      }
+
+      .signup {
+        margin-top: 10px;
+      }
+
+      .captcha {
+        font-size: 12px;
+        color: green;
+        margin-top: 20px;
+      }
+    </style>
+  </body>
+</html>

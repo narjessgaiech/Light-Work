@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fiche de Paie avec Salaire et Congés</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 40px;
+        background: #f8f8f8;
+      }
+
+      .fiche-container {
+        max-width: 800px;
+        margin: auto;
+        background: black;
+        border: 1px solid #ddd;
+        padding: 30px;
+        border-radius: 10px;
+      }
+
+      h2 {
+        text-align: center;
+        color: #e50914;
+        margin-bottom: 30px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        color: green;
+        margin-top: 30px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 5px;
+      }
+
+      .employe-info,
+      .salaire-info,
+      .conges-info {
+        margin-bottom: 25px;
+      }
+
+      .ligne {
+        margin-bottom: 10px;
+      }
+
+      label {
+        display: inline-block;
+        width: 200px;
+        font-weight: bold;
+        color: white;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      td {
+        color: white;
+      }
+      table th,
+      table td {
+        border: 1px solid green;
+        padding: 10px;
+      }
+
+      table th {
+        background-color: #eaeaea;
+      }
+
+      .total {
+        text-align: right;
+        color: #e50914;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="fiche.php" method="POST">
+      <div class="fiche-container">
+        <h2>Fiche de Paie avec Salaire et Congés</h2>
+        <!-- Coordonnées Employé -->
+        <div class="employe-info">
+          <div class="section-title">Informations de l'employé</div>
+          <div class="ligne"><label>Nom complet :</label></div>
+          <div class="ligne"><label>Email :</label></div>
+          <div class="ligne"><label>Téléphone :</label></div>
+          <div class="ligne"><label>Poste :</label></div>
+          <div class="ligne"><label>Département :</label></div>
+          <div class="ligne"><label>Date de naissance :</label></div>
+        </div>
+        <!-- Salaire -->
+        <div class="salaire-info">
+          <div class="section-title">Détails du Salaire</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>Montant (DT)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Salaire de base</td>
+                <td>.....</td>
+              </tr>
+              <tr>
+                <td>Prime de performance</td>
+                <td>.....</td>
+              </tr>
+              <tr>
+                <td>Heures supplémentaires</td>
+                <td>.....</td>
+              </tr>
+              <tr>
+                <td>Retenue sociale</td>
+                <td>.....</td>
+              </tr>
+              <tr>
+                <td>Autres déductions</td>
+                <td>.....</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="total">Salaire net à payer : .......... DT</div>
+        </div>
+        <h2>Calcul du Montant Total</h2>
+        <div class="container">
+          <label for="salaire">Salaire de base (DT) :</label>
+          <input type="number" id="salaire" placeholder="Ex: 2000" />
+
+          <label for="prime">Prime mensuelle (DT) :</label>
+          <input type="number" id="prime" placeholder="Ex: 300" />
+
+          <button onclick="calculerTotal()">Calculer le total</button>
+
+          <div class="total" id="resultat"></div>
+        </div>
+
+        <script>
+          function calculerTotal() {
+            const salaire =
+              parseFloat(document.getElementById("salaire").value) || 0;
+            const prime =
+              parseFloat(document.getElementById("prime").value) || 0;
+            const total = salaire + prime;
+
+            document.getElementById(
+              "resultat"
+            ).innerText = `Salaire brut total : ${total.toFixed(2)} DT`;
+          }
+        </script>
+
+        <!-- Congés -->
+        <div class="conges-info">
+          <div class="section-title">Informations sur les Congés</div>
+          <table>
+            <thead>
+              <tr>
+                <th>Type de Congé</th>
+                <th>Jours Acquis</th>
+                <th>Jours Pris</th>
+                <th>Solde Restant</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Congés payés</td>
+                <td>.....</td>
+                <td>.....</td>
+                <td>.....</td>
+              </tr>
+              <tr>
+                <td>Congés maladie</td>
+                <td>.....</td>
+                <td>.....</td>
+                <td>.....</td>
+              </tr>
+              <tr>
+                <td>Autres congés</td>
+                <td>.....</td>
+                <td>.....</td>
+                <td>.....</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="text-align: center" margin-top="30px;">
+          <button onclick="window.print()">Imprimer La Fiche De Paie</button>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
